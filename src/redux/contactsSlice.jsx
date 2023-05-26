@@ -1,6 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
 export const contactsApi = createApi({
   reducerPath: 'contactsApi',
@@ -34,18 +32,8 @@ export const contactsApi = createApi({
   }),
 });
 
-const persistConfig = {
-  key: 'contactsApi',
-  storage,
-};
-
 export const {
   useFetchContactsQuery,
   useCreateContactMutation,
   useDeleteContactMutation,
 } = contactsApi;
-
-export const persistedReducer = persistReducer(
-  persistConfig,
-  contactsApi.reducer
-);
