@@ -1,0 +1,21 @@
+.headerList {
+    display: flex;
+  }
+  .headerElement {
+    list-style: none;
+    text-decoration: none;
+  }
+  .headerLink {
+    display: block;
+    text-decoration: none;
+  
+    padding: 15px;
+    color: #eaceea;
+    font-weight: 700;
+    font-size: 25px;
+  }
+  .headerLink:hover {
+    color: #6c6a94;
+    transition: 0.4s linear;
+  }
+  

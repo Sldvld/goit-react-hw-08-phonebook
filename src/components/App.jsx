@@ -1,18 +1,19 @@
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
-import { Form } from './Form/Form';
-import css from './App.module.css';
+import { Route, Routes } from 'react-router-dom';
+import { Contacts } from 'Pages/Contacts/Contacts';
+import Home from '../Pages/Home/Home';
+import Login from '../Pages/Login/Login';
+import Register from 'Pages/Register/Register';
+import Layout from '../components/AppBar/Layout';
 
 export function App() {
   return (
-    <section>
-      <h1 className={css.formTitle}>Phonebook</h1>
-      <Form />
-      <div className={css.filterBlock}>
-        <h2 className={css.contactTitle}>Contacts</h2>
-        <Filter />
-      </div>
-      <ContactList />
-    </section>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} path="/home" />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/contacts" element={<Contacts />} />
+      </Route>
+    </Routes>
   );
 }
