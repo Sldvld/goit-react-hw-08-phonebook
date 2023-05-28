@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { authOperations } from '../../redux/auth/auth-operations';
+import { register } from '../../redux/auth/auth-operations';
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -8,29 +8,34 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    const form = evt.currentTarget;
+    dispatch(
+      register({
+        name: form.elements.name.value,
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+    form.reset();
+  };
+
   const handleChange = evt => {
     const { name, value } = evt.target;
     switch (name) {
-      case 'name':
-        setName(value);
-        break;
       case 'email':
         setEmail(value);
         break;
       case 'password':
         setPassword(value);
         break;
+      case 'name':
+        setName(value);
+        break;
       default:
         return;
     }
-  };
-
-  const handleSubmit = evt => {
-    evt.preventDefault();
-    dispatch(authOperations.register({ name, email, password }));
-    setName('');
-    setEmail('');
-    setPassword('');
   };
 
   return (

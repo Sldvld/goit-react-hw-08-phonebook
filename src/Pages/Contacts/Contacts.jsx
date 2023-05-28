@@ -2,7 +2,7 @@ import css from './Contacts.module.css';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 import { Form } from 'components/Form/Form';
-export const Contacts = () => {
+export default function Contacts() {
   return (
     <section>
       <h1 className={css.formTitle}>Phonebook</h1>
@@ -14,4 +14,4 @@ export const Contacts = () => {
       <ContactList />
     </section>
   );
-};
+}

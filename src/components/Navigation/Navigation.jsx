@@ -14,6 +14,11 @@ export default function Navigation() {
           Registrate
         </NavLink>
       </li>
+      <li className={css.headerElement}>
+        <NavLink className={css.headerLink} to="/contacts">
+          Contacts
+        </NavLink>
+      </li>
     </ul>
   );
 }

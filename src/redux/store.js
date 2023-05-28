@@ -1,7 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { filterReducer } from './filterSlice';
 import { contactsApi } from './contactsSlice';
-import { setupListeners } from '@reduxjs/toolkit/query';
 import { authReducer } from './auth/auth-slice';
 import storage from 'redux-persist/lib/storage';
 import {
@@ -15,10 +14,19 @@ import {
   REGISTER,
 } from 'redux-persist';
 
+const middleware = [
+  ...getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+  contactsApi.middleware,
+];
+
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whiteList: ['token'],
+  whitelist: ['token'],
 };
 
 export const store = configureStore({
@@ -27,13 +35,10 @@ export const store = configureStore({
     filter: filterReducer,
     [contactsApi.reducerPath]: contactsApi.reducer,
   },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }).concat(contactsApi.middleware),
+  middleware,
+  devTools: process.env.NODE_ENV === 'development',
 });
 
 export const persistor = persistStore(store);
-setupListeners(store.dispatch);
+
+// franco@gmail.com

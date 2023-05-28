@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { authOperations } from '../../redux/auth/auth-operations';
+import { logIn } from '../../redux/auth/auth-operations';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -23,9 +23,14 @@ export default function Login() {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    dispatch(authOperations.logIn({ email, password }));
-    setEmail('');
-    setPassword('');
+    const form = evt.currentTarget;
+    dispatch(
+      logIn({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+    form.reset();
   };
 
   return (
@@ -36,9 +41,9 @@ export default function Login() {
           <input
             type="email"
             name="email"
+            autoComplete="off"
             value={email}
             onChange={handleChange}
-            autoComplete="off"
           />
         </label>
         <label>
@@ -46,9 +51,9 @@ export default function Login() {
           <input
             type="password"
             name="password"
+            autoComplete="off"
             value={password}
             onChange={handleChange}
-            autoComplete="off"
           />
         </label>
         <button type="submit">Log In</button>
