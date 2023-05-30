@@ -1,51 +1,43 @@
-import { useState } from 'react';
 import css from './Form.module.css';
-import {
-  useCreateContactMutation,
-  useFetchContactsQuery,
-} from 'redux/contactsSlice';
+import Notiflix from 'notiflix';
+import { selectAllContacts } from '../../redux/contacts/contacts-selectors';
+import { addContact } from 'redux/contacts/contacts-operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 
-export function Form() {
+export function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const { data: contacts } = useFetchContactsQuery();
-  const [addContact, { error }] = useCreateContactMutation();
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectAllContacts);
 
-  const formReset = () => {
-    setName('');
-    setNumber('');
-  };
-
-  const inputChangeHandlerName = evt => {
+  const handleName = evt => {
     setName(evt.currentTarget.value);
   };
-
-  const inputChangeHandlerNumber = evt => {
+  const handleNumber = evt => {
     setNumber(evt.currentTarget.value);
   };
 
   const handleSubmit = evt => {
     evt.preventDefault();
-
     const isNameExists = contacts.some(
-      contact => contact.name?.toLowerCase() === name.toLowerCase()
+      contact => contact.name?.toLowerCase() === name.toLocaleLowerCase()
     );
 
     if (isNameExists) {
-      alert(`${name} is already in contacts`);
+      Notiflix.Notify.warning(`${name} is already in contacts`);
       return;
     }
-    addContact({ name: name, number: number });
-    if (error) {
-      alert(error.message);
-      return;
-    }
-    formReset();
+
+    dispatch(addContact({ name, number }));
+    setName('');
+    setNumber('');
+    Notiflix.Notify.success(`Contact ${name} added`);
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit} className={css.form}>
+      <form autoComplete="off" onSubmit={handleSubmit} className={css.form}>
         <label htmlFor="name" className={css.formLabel}>
           Name
         </label>
@@ -53,13 +45,13 @@ export function Form() {
           type="text"
           name="name"
           id="name"
+          value={name}
+          onChange={handleName}
           placeholder="Add name"
           className={css.formInput}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
-          value={name}
-          onChange={inputChangeHandlerName}
         />
         <label htmlFor="number" className={css.formLabel}>
           Number
@@ -68,13 +60,13 @@ export function Form() {
           type="tel"
           name="number"
           id="number"
+          value={number}
+          onChange={handleNumber}
           placeholder="Add number: "
           className={css.formInput}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={number}
-          onChange={inputChangeHandlerNumber}
         />
 
         <button type="submit" className={css.formButton}>
