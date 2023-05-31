@@ -3,6 +3,8 @@ import Notiflix from 'notiflix';
 import { selectAllContacts } from '../../redux/contacts/contacts-selectors';
 import { addContact } from 'redux/contacts/contacts-operations';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectLoading } from '../../redux/contacts/contacts-selectors';
+import Loader from 'components/Loader/Loader';
 import { useState } from 'react';
 
 export function ContactForm() {
@@ -10,6 +12,7 @@ export function ContactForm() {
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
   const contacts = useSelector(selectAllContacts);
+  const isLoading = useSelector(selectLoading);
 
   const handleName = evt => {
     setName(evt.currentTarget.value);
@@ -32,7 +35,9 @@ export function ContactForm() {
     dispatch(addContact({ name, number }));
     setName('');
     setNumber('');
-    Notiflix.Notify.success(`Contact ${name} added`);
+    Notiflix.Notify.success(
+      `Yes! The contact ${name} has been added to the list`
+    );
   };
 
   return (
@@ -71,7 +76,7 @@ export function ContactForm() {
         />
 
         <button type="submit" className={css.formButton}>
-          Add contact
+          {isLoading ? <Loader /> : 'Add contact'}
         </button>
       </form>
     </>

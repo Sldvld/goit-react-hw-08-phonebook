@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { logIn } from '../../redux/auth/auth-operations';
 import css from './Login.module.css';
@@ -45,6 +45,7 @@ export default function Login() {
           value={email}
           onChange={handleChange}
           className={css.formInput}
+          placeholder="Enter your E-mail"
           required
         />
         <label className={css.formLabel}>Password</label>
@@ -55,6 +56,7 @@ export default function Login() {
           value={password}
           onChange={handleChange}
           className={css.formInput}
+          placeholder="Enter a strong password"
           required
         />
         <button type="submit" className={css.formButton}>

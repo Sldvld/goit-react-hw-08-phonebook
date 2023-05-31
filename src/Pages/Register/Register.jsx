@@ -50,6 +50,7 @@ export default function Register() {
           onChange={handleChange}
           autoComplete="off"
           className={css.formInput}
+          placeholder="Enter your Name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
@@ -62,8 +63,7 @@ export default function Register() {
           onChange={handleChange}
           autoComplete="off"
           className={css.formInput}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          placeholder="Enter your E-mail"
           required
         />
         <label className={css.formLabel}>Password</label>
@@ -74,8 +74,7 @@ export default function Register() {
           onChange={handleChange}
           autoComplete="off"
           className={css.formInput}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          placeholder="Enter a strong password"
           required
         />
         <button type="submit" className={css.formButton}>
