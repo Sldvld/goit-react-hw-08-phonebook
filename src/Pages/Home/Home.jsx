@@ -1,3 +1,5 @@
+import css from './Home.module.css';
+
 export default function Home() {
-  return <div>Home</div>;
+  return <h1 className={css.homeLabel}>Welcome to your personal phonebook!</h1>;
 }

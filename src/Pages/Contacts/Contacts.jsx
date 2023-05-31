@@ -8,9 +8,9 @@ export default function Contacts() {
     <section>
       <ContactForm />
       <div className={css.filterBlock}>
-        <h2 className={css.contactTitle}>Contacts</h2>
         <Filter />
       </div>
+      <h2 className={css.contactTitle}>Your personal contacts</h2>
       <ContactList />
     </section>
   );

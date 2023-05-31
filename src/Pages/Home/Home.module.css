@@ -1,0 +1,10 @@
+.homeLabel {
+  display: block;
+  margin-top: 150px;
+
+  width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+  color: #6c6a94;
+  text-align: center;
+}

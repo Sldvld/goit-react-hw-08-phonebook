@@ -1,0 +1,28 @@
+.welcomeMenu {
+  display: flex;
+  align-items: center;
+}
+.userItem {
+  color: #f8efed;
+  font-weight: 600;
+  font-size: 20px;
+  margin-right: 20px;
+}
+.userLogout {
+  margin-right: 25px;
+  font-weight: 600;
+  color: #8184e5;
+  background-color: #f8efed;
+  width: 100px;
+  height: 35px;
+  border-radius: 20px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+.userLogout:hover,
+.userLogout:focus {
+  color: #f8efed;
+  background-color: #8184e5;
+}

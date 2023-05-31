@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { logIn } from '../../redux/auth/auth-operations';
+import css from './Login.module.css';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -34,30 +35,32 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="email"
-            name="email"
-            autoComplete="off"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            name="password"
-            autoComplete="off"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">Log In</button>
+    <section className={css.sectionWrapper}>
+      <form onSubmit={handleSubmit} className={css.form}>
+        <label className={css.formLabel}>Email</label>
+        <input
+          type="email"
+          name="email"
+          autoComplete="off"
+          value={email}
+          onChange={handleChange}
+          className={css.formInput}
+          required
+        />
+        <label className={css.formLabel}>Password</label>
+        <input
+          type="password"
+          name="password"
+          autoComplete="off"
+          value={password}
+          onChange={handleChange}
+          className={css.formInput}
+          required
+        />
+        <button type="submit" className={css.formButton}>
+          Log In
+        </button>
       </form>
-    </div>
+    </section>
   );
 }

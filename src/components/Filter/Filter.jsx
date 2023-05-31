@@ -19,7 +19,9 @@ export function Filter() {
 
   return (
     <>
-      <label htmlFor="filter">Find contacts by name</label>
+      <label htmlFor="filter" className={css.finderDescription}>
+        Find contacts by name
+      </label>
       <input
         className={css.filterForm}
         name="filter"

@@ -8,7 +8,7 @@ export default function AppBar() {
   const { isLoggedIn } = useAuth();
   return (
     <header className={css.headerBox}>
-      <NavLink className={css.headerLink} to="/">
+      <NavLink className={css.headerLink} to="/login">
         <div className={css.headerLabel}>Phonebook</div>
       </NavLink>
       {isLoggedIn ? <UserMenu /> : <Navigation />}

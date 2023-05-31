@@ -5,13 +5,11 @@ import {
 } from 'redux/contacts/contacts-selectors';
 import { useEffect } from 'react';
 import { ContactItem } from 'components/ContactItem/ContactItem';
-import { selectLoading } from 'redux/contacts/contacts-selectors';
 import { fetchContacts } from 'redux/contacts/contacts-operations';
 import css from './ContactList.module.css';
 
 export function ContactList() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
   const contacts = useSelector(selectAllContacts);
   const filter = useSelector(selectFilter);
 
@@ -24,9 +22,7 @@ export function ContactList() {
     contact.name.toLowerCase().includes(lowerFilter)
   );
 
-  return isLoading ? (
-    <div>Loader...</div>
-  ) : (
+  return (
     <div>
       <ul className={css.contactList}>
         {filteredContacts.map(contact => (

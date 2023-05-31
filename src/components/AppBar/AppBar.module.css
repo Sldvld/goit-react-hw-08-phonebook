@@ -12,6 +12,8 @@
   box-shadow: 10px 10px 18px 6px rgba(234, 215, 234, 1);
 }
 .headerLabel {
+  display: block;
+  margin-left: 20px;
   color: #fff;
   font-weight: 700;
   font-size: 25px;

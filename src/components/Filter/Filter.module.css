@@ -11,3 +11,7 @@
 .filterForm:focus {
   border-color: #8184e5;
 }
+.finderDescription {
+  color: #104549;
+  margin: 10px 0px;
+}
