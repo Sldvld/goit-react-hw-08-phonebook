@@ -38,3 +38,8 @@
   background-color: #f8efed;
   color: #8184e5;
 }
+.formTitle {
+  display: flex;
+  justify-content: center;
+  color: #104549;
+}

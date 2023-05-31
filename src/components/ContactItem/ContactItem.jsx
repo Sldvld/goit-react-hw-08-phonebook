@@ -3,7 +3,7 @@ import { deleteContact } from 'redux/contacts/contacts-operations';
 import css from './ContactItem.module.css';
 import Notiflix from 'notiflix';
 
-export const Contact = ({ name, number, id }) => {
+export const ContactItem = ({ name, number, id }) => {
   const dispatch = useDispatch();
 
   const hendleDeleteContact = () => {

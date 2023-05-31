@@ -37,6 +37,7 @@ export function ContactForm() {
 
   return (
     <>
+      <h1 className={css.formTitle}>Phonebook</h1>
       <form autoComplete="off" onSubmit={handleSubmit} className={css.form}>
         <label htmlFor="name" className={css.formLabel}>
           Name
