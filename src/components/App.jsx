@@ -6,6 +6,7 @@ import Layout from '../components/AppBar/Layout';
 import { refreshUser } from 'redux/auth/auth-operations';
 import { PrivateRoute } from './UserMenu/PrivateRoute';
 import { RestrictedRoute } from './UserMenu/RestrictedRoute';
+import { Navigate } from 'react-router-dom';
 
 const Home = lazy(() => import('../Pages/Home/Home'));
 const Register = lazy(() => import('../Pages/Register/Register'));
@@ -47,6 +48,7 @@ export const App = () => {
             }
           />
         </Route>
+        <Route path="*" element={<Navigate to="/" replace />}></Route>
       </Routes>
     )
   );

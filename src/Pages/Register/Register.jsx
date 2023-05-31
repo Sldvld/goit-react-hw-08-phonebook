@@ -14,7 +14,7 @@ export default function Register() {
 
   useEffect(() => {
     if (isSubmitted && error) {
-      Notiflix.Notify.failure('Incorrect login or password is entered');
+      Notiflix.Notify.failure('Please enter valid registration details');
       setIsSubmitted(false);
     }
   }, [isSubmitted, error]);
@@ -28,9 +28,11 @@ export default function Register() {
         email: form.elements.email.value,
         password: form.elements.password.value,
       })
-    );
-    setIsSubmitted(true);
-    form.reset();
+    )
+      .unwrap()
+      .catch(() =>
+        Notiflix.Notify.failure('enter correct data for registration')
+      );
   };
 
   const handleChange = evt => {
